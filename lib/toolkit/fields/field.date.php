@@ -423,7 +423,7 @@
 			if(!is_null($timestamp)) {
 				return array(
 					'value' => DateTimeObj::get('c', $timestamp),
-					'local' => $timestamp,
+					'local' => DateTimeObj::get('U', $timestamp),
 					'gmt' => DateTimeObj::getGMT('U', $timestamp)
 				);
 			}

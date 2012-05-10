@@ -436,7 +436,7 @@
 			);
 
 			foreach($field_groups as $section_id => $section_data){
-				$optgroup = array('label' => General::sanitize($section_data['section']->get('name')), 'options' => array(
+				$optgroup = array('label' => $section_data['section']->get('name'), 'options' => array(
 					array('system:id', ($fields['source'] == $section_data['section']->get('id') && $fields['sort'] == 'system:id'), __('System ID')),
 					array('system:date', ($fields['source'] == $section_data['section']->get('id') && $fields['sort'] == 'system:date'), __('System Date')),
 				));
@@ -446,11 +446,7 @@
 
 						if(!$input->isSortable()) continue;
 
-						$optgroup['options'][] = array(
-							$input->get('element_name'),
-							($fields['source'] == $section_data['section']->get('id') && $input->get('element_name') == $fields['sort']),
-							$input->get('label')
-						);
+						$optgroup['options'][] = array($input->get('element_name'), ($fields['source'] == $section_data['section']->get('id') && $input->get('element_name') == $fields['sort']), $input->get('label'));
 					}
 				}
 
@@ -943,7 +939,7 @@
 			if(empty($classname)) $this->_errors['name'] = __('Please ensure name contains at least one Latin-based alphabet.', array($classname));
 
 			$file = DATASOURCES . '/data.' . $classname . '.php';
-
+			
 			$isDuplicate = false;
 			$queueForDeletion = NULL;
 

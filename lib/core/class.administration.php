@@ -392,7 +392,7 @@
 			 *  extends HTMLPage. The Symphony backend uses a convention of contentPageName
 			 *  as the class that extends the HTMLPage
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AdminPagePreGenerate', '/backend/', array('oPage' => &$this->Page));
+			$this->ExtensionManager->notifyMembers('AdminPagePreGenerate', '/backend/', array('oPage' => &$this->Page));
 
 			$output = $this->Page->generate();
 
@@ -404,7 +404,7 @@
 			 * @param string $output
 			 *  The resulting backend page HTML as a string, passed by reference
 			 */
-			Symphony::ExtensionManager()->notifyMembers('AdminPagePostGenerate', '/backend/', array('output' => &$output));
+			$this->ExtensionManager->notifyMembers('AdminPagePostGenerate', '/backend/', array('output' => &$output));
 
 			$this->Profiler->sample('Page built');
 

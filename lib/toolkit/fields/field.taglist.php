@@ -116,6 +116,7 @@
 				foreach($sections as $section) $field_groups[$section->get('id')] = array('fields' => $section->fetchFields(), 'section' => $section);
 
 			$options = array(
+				//array('none', false, __('None')),
 				array('existing', (in_array('existing', $this->get('pre_populate_source'))), __('Existing Values')),
 			);
 
@@ -169,9 +170,7 @@
 
 			$label = Widget::Label($this->get('label'));
 
-			$label->appendChild(
-				Widget::Input('fields'.$fieldnamePrefix.'['.$this->get('element_name').']'.$fieldnamePostfix, (strlen($value) != 0 ? General::sanitize($value) : NULL))
-			);
+			$label->appendChild(Widget::Input('fields'.$fieldnamePrefix.'['.$this->get('element_name').']'.$fieldnamePostfix, (strlen($value) != 0 ? $value : NULL)));
 
 			if($flagWithError != NULL) $wrapper->appendChild(Widget::wrapFormElementWithError($label, $flagWithError));
 			else $wrapper->appendChild($label);

@@ -63,7 +63,6 @@
 
 			// Timezone
 			if(isset($settings['timezone'])) {
-				self::$settings['timezone'] = $settings['timezone'];
 				self::setDefaultTimezone($settings['timezone']);
 			}
 		}
@@ -236,13 +235,8 @@
 			}
 
 			// Timezone
-			// If a timezone was given, apply it
 			if($timezone !== null) {
 				$date->setTimezone(new DateTimeZone($timezone));
-			}
-			// No timezone given, apply the default timezone
-			else if (isset(self::$settings['timezone'])) {
-				$date->setTimezone(new DateTimeZone(self::$settings['timezone']));
 			}
 
 			// Format date
